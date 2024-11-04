@@ -11,14 +11,14 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import Auth from "./routes/Auth";
-import Login from "./routes/login/Login";
+import Signup from "./routes/Signup";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<App />} />
       <Route path="auth" element={<Auth />} />
-      <Route path="login" element={<Login />} />
+      <Route path="signup" element={<Signup />} />
     </>
   )
 );
