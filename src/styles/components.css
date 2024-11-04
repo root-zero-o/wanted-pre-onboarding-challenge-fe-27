@@ -1,0 +1,19 @@
+input,
+textarea {
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+}
+
+button {
+  cursor: pointer;
+
+  border: none;
+  border-radius: 0.25rem;
+}
+
+a {
+  text-decoration: underline;
+  cursor: pointer;
+}

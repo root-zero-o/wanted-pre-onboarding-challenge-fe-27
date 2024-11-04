@@ -76,14 +76,6 @@
   span {
     font-size: 0.8rem;
   }
-
-  input,
-  textarea {
-    border: none;
-    border-radius: 0.25rem;
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
-  }
 }
 
 .boxFooter {
