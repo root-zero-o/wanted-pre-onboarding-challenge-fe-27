@@ -1,28 +1,28 @@
-import { MouseEvent, useState } from "react";
-
+import { useState } from "react";
 import styled from "styled-components";
 import { addTodo } from "../../modules/list/fetcher";
 import Button from "../common/Button";
 import { ModalBox } from "./ModalBox";
 
-const AddModal = () => {
-  const [show, setShow] = useState(false);
+const AddModal = ({ refetch }: { refetch: () => void }) => {
   const [title, setTitle] = useState<string | null>(null);
   const [content, setContent] = useState<string | null>(null);
+  const [show, setShow] = useState(false);
 
-  const handleClose = (e: MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setShow(false);
+  const handleSubmit = async () => {
+    if (!title || !content) return;
+    await addTodo({ title, content }).then(() => {
+      refetch();
+      handleClose();
+    });
   };
 
   const handleOpen = () => {
     setShow(true);
   };
 
-  const handleSubmit = async () => {
-    if (!title || !content) return;
-    await addTodo({ title, content }).then(() => setShow(false));
+  const handleClose = () => {
+    setShow(false);
   };
 
   return (
@@ -30,11 +30,17 @@ const AddModal = () => {
       <OpenButton onClick={handleOpen}>추가</OpenButton>
       {show && (
         <>
-          <Dim onClick={(e) => handleClose(e)} />
+          <Dim
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              handleClose();
+            }}
+          />
           <Container>
             <div className="modal-header">
               <h4>할 일 추가하기</h4>
-              <button onClick={handleClose}>닫기</button>
+              <button onClick={() => handleClose()}>닫기</button>
             </div>
             <div className="modal-main">
               <span>제목</span>

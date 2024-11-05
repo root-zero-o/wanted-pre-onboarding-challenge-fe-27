@@ -1,16 +1,13 @@
 import styled from "styled-components";
 import { Column } from "../../../components/common/FlexBox";
 import { H4 } from "../../../components/common/Typographies";
+import { ITodoItem } from "../fetcher";
 
-const ListItem = () => {
+const ListItem = ({ todo }: { todo: ITodoItem }) => {
   return (
     <Box>
-      <H4>원티드 프리온보딩 세션 듣기</H4>
-      <span>19:00 ~ 20:00</span>
-      {/* <div>
-          <button className={ListStyles.itemBtn}>수정</button>
-          <button className={ListStyles.itemBtn}>삭제</button>
-        </div> */}
+      <H4>{todo.title}</H4>
+      <span>{todo.content}</span>
     </Box>
   );
 };

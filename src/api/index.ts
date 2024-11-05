@@ -36,12 +36,12 @@ export const Get = async <T>({ path, query }: IGet): Promise<T> => {
     }
   );
 
-  const { data, error }: any = await response.json();
+  const res: any = await response.json();
 
   if (response.ok) {
-    return data;
+    return res;
   } else {
-    return Promise.reject(error);
+    return Promise.reject(res.error);
   }
 };
 

@@ -1,10 +1,10 @@
 import { Get, Post } from "../../api";
 
-interface ITodoList {
+export interface ITodoList {
   data: ITodoItem[];
 }
 
-interface ITodoItem {
+export interface ITodoItem {
   title: string;
   content: string;
   id: string;
