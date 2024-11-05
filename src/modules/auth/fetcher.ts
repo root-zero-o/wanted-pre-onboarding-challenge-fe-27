@@ -1,18 +1,15 @@
 import { Post } from "../../api";
 import { setTokenFromLocalStorage } from "../../utils/localStorage";
 
-interface ISignupUserReq {
+interface ILoginReq {
   email: string;
   password: string;
 }
 
-/** POST : 회원가입 */
-export const signupUser = async (
-  payload: ISignupUserReq,
-  onSuccess: () => void
-) => {
+/** POST : 로그인 */
+export const login = async (payload: ILoginReq, onSuccess: () => void) => {
   const res = await Post<{ message: string; token: string }>({
-    path: "users/create",
+    path: "users/login",
     body: payload,
     noAuth: true,
   }).catch((e) => alert(e));

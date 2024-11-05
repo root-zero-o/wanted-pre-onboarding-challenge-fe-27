@@ -1,6 +1,7 @@
 import { H1, H4, Safe, Warning } from "../components/common/Typographies";
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../components/common/Button";
 import Layout from "../components/common/Layout";
 import { ModalBox } from "../components/modal/ModalBox";
@@ -10,12 +11,16 @@ const Signup = () => {
   const [email, setEmail] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
 
+  const navigate = useNavigate();
+
   const regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
   const isValid = !!email && regex.test(email);
 
   const handleSubmit = async () => {
     if (!email || !password) return;
-    await signupUser({ email, password });
+    await signupUser({ email, password }, () =>
+      navigate("/", { replace: true })
+    );
   };
 
   return (
@@ -42,7 +47,7 @@ const Signup = () => {
           />
         </div>
         <Button
-          disabled={!email || !password || !isValid || password.length < 7}
+          disabled={!email || !password || !isValid || password.length < 8}
           onClick={handleSubmit}
         >
           가입하기
