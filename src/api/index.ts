@@ -14,6 +14,11 @@ interface IPost {
 }
 
 export const Get = async <T>(path: string, query: IQuery): Promise<T> => {
+  const token = getTokenFromLocalStorage();
+  if (!token) {
+    throw new Error("로그인이 필요합니다.");
+  }
+
   const response = await fetch(
     `${BASE_URL}/${path}` + new URLSearchParams(query),
     {
@@ -21,6 +26,7 @@ export const Get = async <T>(path: string, query: IQuery): Promise<T> => {
       headers: {
         "Content-Type": "application/json",
         Accept: "*/*",
+        Authorization: token || "",
       },
     }
   );
@@ -44,7 +50,7 @@ export const Post = async <T>({
 
   if (!noAuth) {
     if (!token) {
-      throw new Error("토큰이 유효하지 않습니다.");
+      throw new Error("로그인이 필요합니다.");
     }
   }
 

@@ -25,6 +25,10 @@ const StyledButton = styled.button`
   background-color: var(--main-grey);
   color: var(--main-white);
 
+  display: flex;
+  align-items: center;
+  padding: 0 0.4rem;
+
   transition: 0.2s all ease-in-out;
 
   &:disabled {
