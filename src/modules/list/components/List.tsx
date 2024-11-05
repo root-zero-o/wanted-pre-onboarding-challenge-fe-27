@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Column } from "../../../components/common/FlexBox";
+import { getTodoList } from "../fetcher";
 import ListItem from "./ListItem";
 
 interface IList {
@@ -7,6 +8,8 @@ interface IList {
 }
 
 const List = ({ onClickItem }: IList) => {
+  const res = getTodoList().then((res) => console.log(res));
+
   return (
     <FullHeight>
       <div onClick={() => onClickItem("1")}>

@@ -6,9 +6,14 @@ interface ILoginReq {
   password: string;
 }
 
+interface ILoginRes {
+  message: string;
+  token: string;
+}
+
 /** POST : 로그인 */
 export const login = async (payload: ILoginReq, onSuccess: () => void) => {
-  const res = await Post<{ message: string; token: string }>({
+  const res = await Post<ILoginRes>({
     path: "users/login",
     body: payload,
     noAuth: true,

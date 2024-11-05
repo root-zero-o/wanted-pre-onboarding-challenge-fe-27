@@ -6,6 +6,11 @@ interface IQuery {
   [key: string]: string;
 }
 
+interface IGet {
+  path: string;
+  query?: IQuery;
+}
+
 interface IPost {
   path: string;
   body: any;
@@ -13,7 +18,7 @@ interface IPost {
   noAuth?: boolean;
 }
 
-export const Get = async <T>(path: string, query: IQuery): Promise<T> => {
+export const Get = async <T>({ path, query }: IGet): Promise<T> => {
   const token = getTokenFromLocalStorage();
   if (!token) {
     throw new Error("로그인이 필요합니다.");
