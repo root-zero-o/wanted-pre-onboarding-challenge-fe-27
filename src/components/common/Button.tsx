@@ -6,11 +6,13 @@ interface IButton {
 
   disabled?: boolean;
   onClick: () => void;
+
+  className?: string;
 }
 
-const Button = ({ children, disabled, onClick }: IButton) => {
+const Button = ({ children, disabled, onClick, className }: IButton) => {
   return (
-    <StyledButton onClick={onClick} disabled={disabled}>
+    <StyledButton className={className} onClick={onClick} disabled={disabled}>
       {children}
     </StyledButton>
   );
@@ -27,7 +29,7 @@ const StyledButton = styled.button`
 
   display: flex;
   align-items: center;
-  padding: 0 0.4rem;
+  justify-content: center;
 
   transition: 0.2s all ease-in-out;
 
