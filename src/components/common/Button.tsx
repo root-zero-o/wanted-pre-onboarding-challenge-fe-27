@@ -5,10 +5,15 @@ interface IButton {
   children: ReactNode;
 
   disabled?: boolean;
+  onClick: () => void;
 }
 
-const Button = ({ children, disabled }: IButton) => {
-  return <StyledButton disabled={disabled}>{children}</StyledButton>;
+const Button = ({ children, disabled, onClick }: IButton) => {
+  return (
+    <StyledButton onClick={onClick} disabled={disabled}>
+      {children}
+    </StyledButton>
+  );
 };
 
 export default Button;

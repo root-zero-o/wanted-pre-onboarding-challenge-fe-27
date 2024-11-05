@@ -4,6 +4,7 @@ import { useState } from "react";
 import Button from "../components/common/Button";
 import Layout from "../components/common/Layout";
 import { ModalBox } from "../components/modal/ModalBox";
+import { signupUser } from "../modules/signup/fetcher";
 
 const Signup = () => {
   const [email, setEmail] = useState<string | null>(null);
@@ -11,6 +12,11 @@ const Signup = () => {
 
   const regex = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
   const isValid = !!email && regex.test(email);
+
+  const handleSubmit = async () => {
+    if (!email || !password) return;
+    await signupUser({ email, password });
+  };
 
   return (
     <Layout center>
@@ -36,7 +42,8 @@ const Signup = () => {
           />
         </div>
         <Button
-          disabled={!email || !password || !isValid || password.length < 8}
+          disabled={!email || !password || !isValid || password.length < 7}
+          onClick={handleSubmit}
         >
           가입하기
         </Button>
